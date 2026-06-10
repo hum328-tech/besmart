@@ -179,6 +179,66 @@
       padding:25px;
       color:#777;
     }
+    .word-game{
+  text-align:center;
+}
+
+.image-box{
+  font-size:90px;
+  background:#FFF3B0;
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:15px;
+}
+
+.drop-area{
+  min-height:90px;
+  background:#F5F5F5;
+  border:4px dashed #8ECAE6;
+  border-radius:22px;
+  padding:15px;
+  margin:20px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.syllable-bank{
+  background:#F1F9FF;
+  border-radius:22px;
+  padding:18px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.syllable{
+  background:#FFB703;
+  color:#17324D;
+  border-radius:20px;
+  padding:18px 24px;
+  font-size:30px;
+  font-weight:bold;
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+  box-shadow:0 5px 10px rgba(0,0,0,.18);
+}
+
+.syllable.dragging{
+  opacity:.5;
+}
+
+.feedback{
+  font-size:24px;
+  font-weight:bold;
+  min-height:35px;
+  margin:15px 0;
+}
   </style>
 </head>
 
@@ -389,66 +449,7 @@ function openModule(id){
     segundoIndex = (segundoIndex + 1) % segundoItems.length;
     document.getElementById("segundoBox").innerText = segundoItems[segundoIndex];
   }
-.word-game{
-  text-align:center;
-}
 
-.image-box{
-  font-size:90px;
-  background:#FFF3B0;
-  border-radius:25px;
-  padding:25px;
-  margin-bottom:15px;
-}
-
-.drop-area{
-  min-height:90px;
-  background:#F5F5F5;
-  border:4px dashed #8ECAE6;
-  border-radius:22px;
-  padding:15px;
-  margin:20px 0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.syllable-bank{
-  background:#F1F9FF;
-  border-radius:22px;
-  padding:18px;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.syllable{
-  background:#FFB703;
-  color:#17324D;
-  border-radius:20px;
-  padding:18px 24px;
-  font-size:30px;
-  font-weight:bold;
-  cursor:grab;
-  user-select:none;
-  touch-action:none;
-  box-shadow:0 5px 10px rgba(0,0,0,.18);
-}
-
-.syllable.dragging{
-  opacity:.5;
-}
-
-.feedback{
-  font-size:24px;
-  font-weight:bold;
-  min-height:35px;
-  margin:15px 0;
-}
 const wordGames = [
   {
     image: "🐱",
@@ -601,6 +602,7 @@ function nextWord(){
   currentGame = (currentGame + 1) % wordGames.length;
   loadWordGame();
 }
+  
 </script>
 
 </body>
