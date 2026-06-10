@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lectoescritura Inicial</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#F5F5F5;
+      color:#17324D;
+    }
+
+    header{
+      background:linear-gradient(180deg,#F5F5F5,#E2E2E2);
+      padding:30px 20px;
+      text-align:center;
+      border-bottom:6px solid #FFB703;
+    }
+
+    header h1{
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    header p{
+      font-size:18px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:auto;
+      padding:25px;
+    }
+
+    .intro{
+      background:white;
+      border-radius:25px;
+      padding:25px;
+      text-align:center;
+      box-shadow:0 6px 14px rgba(0,0,0,.15);
+      margin-bottom:30px;
+    }
+
+    .intro h2{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .intro p{
+      font-size:18px;
+      line-height:1.5;
+    }
+
+    .levels{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .level-card{
+      background:white;
+      border-radius:28px;
+      padding:25px;
+      text-align:center;
+      box-shadow:0 6px 14px rgba(0,0,0,.15);
+      border:4px solid transparent;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .level-card:hover{
+      transform:translateY(-5px);
+      border-color:#FFB703;
+    }
+
+    .emoji{
+      font-size:60px;
+      margin-bottom:15px;
+    }
+
+    .level-card h3{
+      font-size:25px;
+      margin-bottom:10px;
+    }
+
+    .level-card p{
+      font-size:16px;
+      color:#555;
+    }
+
+    .module{
+      display:none;
+      background:white;
+      border-radius:28px;
+      padding:25px;
+      margin-top:30px;
+      box-shadow:0 6px 14px rgba(0,0,0,.15);
+    }
+
+    .module.active{
+      display:block;
+    }
+
+    .module h2{
+      text-align:center;
+      font-size:30px;
+      margin-bottom:20px;
+    }
+
+    .big-box{
+      background:#FFF3B0;
+      border-radius:25px;
+      padding:30px;
+      text-align:center;
+      font-size:60px;
+      font-weight:bold;
+      color:#FB8500;
+      margin-bottom:25px;
+    }
+
+    .activities{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .activity{
+      background:#F1F9FF;
+      border:3px solid #BDE0FE;
+      border-radius:22px;
+      padding:20px;
+      text-align:center;
+    }
+
+    .activity h4{
+      font-size:21px;
+      margin-bottom:10px;
+    }
+
+    .activity p{
+      font-size:15px;
+      margin-bottom:15px;
+    }
+
+    button{
+      background:#FFB703;
+      color:#17324D;
+      border:none;
+      border-radius:25px;
+      padding:14px 24px;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 5px 10px rgba(0,0,0,.15);
+      transition:.3s;
+    }
+
+    button:hover{
+      background:#FB8500;
+      color:white;
+    }
+
+    .back-btn{
+      display:block;
+      margin:25px auto 0;
+      background:#8ECAE6;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      color:#777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Lectoescritura Inicial</h1>
+  <p>De 3º de kínder a 2º de primaria</p>
+</header>
+
+<main class="container">
+
+  <section class="intro" id="intro">
+    <h2>Aprender a leer y escribir paso a paso</h2>
+    <p>
+      Proyecto diseñado para fortalecer conciencia fonológica, reconocimiento de letras,
+      sílabas, palabras, lectura inicial y escritura guiada.
+    </p>
+  </section>
+
+  <section class="levels" id="levels">
+
+    <div class="level-card" onclick="openModule('kinder3')">
+      <div class="emoji">🌈</div>
+      <h3>3º de Kínder</h3>
+      <p>Vocales, sonidos iniciales, trazos y palabras muy simples.</p>
+    </div>
+
+    <div class="level-card" onclick="openModule('primero')">
+      <div class="emoji">📘</div>
+      <h3>1º de Primaria</h3>
+      <p>Sílabas, palabras cortas, lectura guiada y escritura inicial.</p>
+    </div>
+
+    <div class="level-card" onclick="openModule('segundo')">
+      <div class="emoji">✏️</div>
+      <h3>2º de Primaria</h3>
+      <p>Lectura de oraciones, comprensión y producción escrita breve.</p>
+    </div>
+
+  </section>
+
+  <!-- KINDER 3 -->
+  <section class="module" id="kinder3">
+    <h2>3º de Kínder</h2>
+
+    <div class="big-box" id="kinderBox">A</div>
+
+    <div class="activities">
+      <div class="activity">
+        <h4>Reconoce la vocal</h4>
+        <p>Observa la letra y di su sonido.</p>
+        <button onclick="changeKinder()">Cambiar</button>
+      </div>
+
+      <div class="activity">
+        <h4>Sonido inicial</h4>
+        <p>Identifica palabras que empiezan igual.</p>
+        <button>Jugar</button>
+      </div>
+
+      <div class="activity">
+        <h4>Trazo</h4>
+        <p>Practica el trazo grande en pantalla o cuaderno.</p>
+        <button>Practicar</button>
+      </div>
+    </div>
+
+    <button class="back-btn" onclick="goHome()">Regresar</button>
+  </section>
+
+  <!-- PRIMERO -->
+ <section class="module" id="primero">
+  <h2>1º de Primaria</h2>
+
+  <div class="word-game">
+    <div class="image-box" id="imageBox">🐱</div>
+    <h3>Forma la palabra</h3>
+    <p>Arrastra las sílabas al orden correcto.</p>
+
+    <div class="drop-area" id="dropArea"></div>
+
+    <div class="syllable-bank" id="syllableBank"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button onclick="checkWord()">Revisar</button>
+    <button onclick="nextWord()">Siguiente</button>
+  </div>
+
+  <button class="back-btn" onclick="goHome()">Regresar</button>
+</section>
+  <!-- SEGUNDO -->
+  <section class="module" id="segundo">
+    <h2>2º de Primaria</h2>
+
+    <div class="big-box" id="segundoBox">La mamá ama a Memo.</div>
+
+    <div class="activities">
+      <div class="activity">
+        <h4>Lee la oración</h4>
+        <p>Lee con fluidez y entonación.</p>
+        <button onclick="changeSegundo()">Cambiar</button>
+      </div>
+
+      <div class="activity">
+        <h4>Comprensión</h4>
+        <p>Responde una pregunta sobre la oración.</p>
+        <button>Responder</button>
+      </div>
+
+      <div class="activity">
+        <h4>Escritura breve</h4>
+        <p>Escribe una oración propia con apoyo.</p>
+        <button>Escribir</button>
+      </div>
+    </div>
+
+    <button class="back-btn" onclick="goHome()">Regresar</button>
+  </section>
+
+</main>
+
+<footer>
+  Proyecto Lectoescritura Inicial
+</footer>
+
+<script>
+  const kinderItems = [
+    "A",
+    "E",
+    "I",
+    "O",
+    "U",
+    "M",
+    "P",
+    "S"
+  ];
+
+  const primeroItems = [
+    "ma",
+    "me",
+    "mi",
+    "mo",
+    "mu",
+    "pa",
+    "pe",
+    "pi",
+    "po",
+    "pu",
+    "sa",
+    "se",
+    "si",
+    "so",
+    "su"
+  ];
+
+  const segundoItems = [
+    "La mamá ama a Memo.",
+    "Susi toma sopa.",
+    "El sapo salta.",
+    "Lalo lee solo.",
+    "Mi papá mira el mapa."
+  ];
+
+  let kinderIndex = 0;
+  let primeroIndex = 0;
+  let segundoIndex = 0;
+
+function openModule(id){
+
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("levels").style.display = "none";
+
+  document.querySelectorAll(".module").forEach(module => {
+    module.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  // Si entra al módulo de primero de primaria,
+  // carga el juego de sílabas.
+  if(id === "primero"){
+    loadWordGame();
+  }
+
+}
+  function goHome(){
+    document.getElementById("intro").style.display = "block";
+    document.getElementById("levels").style.display = "grid";
+
+    document.querySelectorAll(".module").forEach(module => {
+      module.classList.remove("active");
+    });
+  }
+
+  function changeKinder(){
+    kinderIndex = (kinderIndex + 1) % kinderItems.length;
+    document.getElementById("kinderBox").innerText = kinderItems[kinderIndex];
+  }
+
+  function changePrimero(){
+    primeroIndex = (primeroIndex + 1) % primeroItems.length;
+    document.getElementById("primeroBox").innerText = primeroItems[primeroIndex];
+  }
+
+  function changeSegundo(){
+    segundoIndex = (segundoIndex + 1) % segundoItems.length;
+    document.getElementById("segundoBox").innerText = segundoItems[segundoIndex];
+  }
+.word-game{
+  text-align:center;
+}
+
+.image-box{
+  font-size:90px;
+  background:#FFF3B0;
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:15px;
+}
+
+.drop-area{
+  min-height:90px;
+  background:#F5F5F5;
+  border:4px dashed #8ECAE6;
+  border-radius:22px;
+  padding:15px;
+  margin:20px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.syllable-bank{
+  background:#F1F9FF;
+  border-radius:22px;
+  padding:18px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.syllable{
+  background:#FFB703;
+  color:#17324D;
+  border-radius:20px;
+  padding:18px 24px;
+  font-size:30px;
+  font-weight:bold;
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+  box-shadow:0 5px 10px rgba(0,0,0,.18);
+}
+
+.syllable.dragging{
+  opacity:.5;
+}
+
+.feedback{
+  font-size:24px;
+  font-weight:bold;
+  min-height:35px;
+  margin:15px 0;
+}
+const wordGames = [
+  {
+    image: "🐱",
+    word: "gato",
+    syllables: ["ga", "to"]
+  },
+  {
+    image: "🦆",
+    word: "pato",
+    syllables: ["pa", "to"]
+  },
+  {
+    image: "🏠",
+    word: "casa",
+    syllables: ["ca", "sa"]
+  },
+  {
+    image: "🍅",
+    word: "tomate",
+    syllables: ["to", "ma", "te"]
+  },
+  {
+    image: "👟",
+    word: "zapato",
+    syllables: ["za", "pa", "to"]
+  }
+];
+
+let currentGame = 0;
+let draggedItem = null;
+
+function loadWordGame(){
+  const game = wordGames[currentGame];
+
+  document.getElementById("imageBox").innerText = game.image;
+  document.getElementById("dropArea").innerHTML = "";
+  document.getElementById("syllableBank").innerHTML = "";
+  document.getElementById("feedback").innerText = "";
+
+  const shuffled = [...game.syllables].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach(syllable => {
+    const tag = document.createElement("div");
+    tag.className = "syllable";
+    tag.innerText = syllable;
+    tag.draggable = true;
+
+    tag.addEventListener("dragstart", dragStart);
+    tag.addEventListener("dragend", dragEnd);
+
+    tag.addEventListener("touchstart", touchStart, { passive:false });
+    tag.addEventListener("touchmove", touchMove, { passive:false });
+    tag.addEventListener("touchend", touchEnd, { passive:false });
+
+    document.getElementById("syllableBank").appendChild(tag);
+  });
+}
+
+function dragStart(e){
+  draggedItem = e.target;
+  e.target.classList.add("dragging");
+}
+
+function dragEnd(e){
+  e.target.classList.remove("dragging");
+}
+
+document.getElementById("dropArea").addEventListener("dragover", e => {
+  e.preventDefault();
+});
+
+document.getElementById("dropArea").addEventListener("drop", e => {
+  e.preventDefault();
+
+  if(draggedItem){
+    document.getElementById("dropArea").appendChild(draggedItem);
+    draggedItem = null;
+  }
+});
+
+document.getElementById("syllableBank").addEventListener("dragover", e => {
+  e.preventDefault();
+});
+
+document.getElementById("syllableBank").addEventListener("drop", e => {
+  e.preventDefault();
+
+  if(draggedItem){
+    document.getElementById("syllableBank").appendChild(draggedItem);
+    draggedItem = null;
+  }
+});
+
+function touchStart(e){
+  e.preventDefault();
+  draggedItem = e.target;
+  draggedItem.classList.add("dragging");
+}
+
+function touchMove(e){
+  e.preventDefault();
+
+  const touch = e.touches[0];
+  draggedItem.style.position = "fixed";
+  draggedItem.style.left = touch.clientX - 40 + "px";
+  draggedItem.style.top = touch.clientY - 30 + "px";
+  draggedItem.style.zIndex = "1000";
+}
+
+function touchEnd(e){
+  e.preventDefault();
+
+  const touch = e.changedTouches[0];
+  const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+
+  draggedItem.style.position = "";
+  draggedItem.style.left = "";
+  draggedItem.style.top = "";
+  draggedItem.style.zIndex = "";
+  draggedItem.classList.remove("dragging");
+
+  if(elementBelow && elementBelow.closest("#dropArea")){
+    document.getElementById("dropArea").appendChild(draggedItem);
+  }
+
+  if(elementBelow && elementBelow.closest("#syllableBank")){
+    document.getElementById("syllableBank").appendChild(draggedItem);
+  }
+
+  draggedItem = null;
+}
+
+function checkWord(){
+  const selected = Array.from(document.querySelectorAll("#dropArea .syllable"))
+    .map(item => item.innerText)
+    .join("");
+
+  const correctWord = wordGames[currentGame].word;
+
+  if(selected === correctWord){
+    document.getElementById("feedback").innerText = "✅ ¡Muy bien!";
+    document.getElementById("feedback").style.color = "green";
+  }else{
+    document.getElementById("feedback").innerText = "❌ Intenta otra vez";
+    document.getElementById("feedback").style.color = "red";
+  }
+}
+
+function nextWord(){
+  currentGame = (currentGame + 1) % wordGames.length;
+  loadWordGame();
+}
+</script>
+
+</body>
+</html>
